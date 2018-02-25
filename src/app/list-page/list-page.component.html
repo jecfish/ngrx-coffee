@@ -1,5 +1,5 @@
 <ul>
-  <li *ngFor="let coffee of coffeeList">
+  <li *ngFor="let coffee of (list$ | async)">
     <h4>{{ coffee.name }}</h4>
     <div class="cup">
       <div *ngFor="let ingredient of coffee.recipe" 
