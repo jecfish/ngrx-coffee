@@ -1,0 +1,12 @@
+<ul>
+  <li *ngFor="let coffee of coffeeList">
+    <h4>{{ coffee.name }}</h4>
+    <div class="cup">
+      <div *ngFor="let ingredient of coffee.recipe" 
+        class="ingredient {{ ingredient.name }}" 
+        [style.height]="ingredient.quantity + '%'">
+        {{ ingredient.name }}
+      </div>
+    </div>
+  </li>
+</ul>
