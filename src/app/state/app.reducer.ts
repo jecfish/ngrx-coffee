@@ -1,5 +1,5 @@
 import * as i from './app.interfaces';
-import * as a from './app.action';
+import * as a from './app.actions';
 import { appInitialState } from './app.init';
 
 export function appReducer(state: i.App, action: a.AppAction): i.App {
@@ -15,6 +15,14 @@ export function appReducer(state: i.App, action: a.AppAction): i.App {
         case 'GET_COFFEE_LIST_FAILED': {
             const current = {
                 coffeeList: []
+            };
+
+            return { ...state, ...current };
+        }
+
+        case 'ADD_TO_CART': {
+            const current = {
+                cart: [...state.cart, action.payload]
             };
 
             return { ...state, ...current };

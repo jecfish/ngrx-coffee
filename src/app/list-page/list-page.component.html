@@ -1,7 +1,7 @@
 <ul>
   <li *ngFor="let coffee of (list$ | async)">
     <h4>{{ coffee.name }}</h4>
-    <div class="cup">
+    <div class="cup" (click)="addToCart(coffee.name)">
       <div *ngFor="let ingredient of coffee.recipe" 
         class="ingredient {{ ingredient.name }}" 
         [style.height]="ingredient.quantity + '%'">

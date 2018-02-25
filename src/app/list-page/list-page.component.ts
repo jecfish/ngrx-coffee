@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as i from '../state/app.interfaces';
-import * as a from '../state/app.action';
+import * as a from '../state/app.actions';
 import { Store } from '@ngrx/store';
+import { CoffeeService } from '../services/coffee.service';
 
 
 @Component({
@@ -12,20 +13,15 @@ import { Store } from '@ngrx/store';
 })
 export class ListPageComponent implements OnInit {
 
-  list$;
-  // coffeeList;
+  list$ = this.store.select(x => x.app.coffeeList);
 
-  constructor(private http: HttpClient, private store: Store<i.AppState>) { }
+  constructor(private coffeeSvc: CoffeeService, private store: Store<i.AppState>) { }
 
   ngOnInit() {
-    this.list$ = this.store.select(x => x.app.coffeeList);
-    this.getAll();
+    this.store.dispatch({ type: 'GET_COFFEE_LIST' });
   }
 
-  getAll() {
-    this.http.get('assets/list.json').subscribe((x: i.Coffee[]) => {
-      this.store.dispatch<a.GetCoffeeListSuccess>({ type: 'GET_COFFEE_LIST_SUCCESS', payload: x });
-    });
+  addToCart(name: string) {
+    this.store.dispatch({ type: 'ADD_TO_CART', payload: name });
   }
-
 }

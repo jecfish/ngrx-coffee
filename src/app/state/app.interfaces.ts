@@ -1,7 +1,7 @@
 export interface App {
     // define state here
     coffeeList: Coffee[];
-    cart: Coffee[];
+    cart: string[];
 }
 
 export interface AppState {

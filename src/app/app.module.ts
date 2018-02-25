@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 import { ListPageComponent } from './list-page/list-page.component';
 import { appReducer } from './state/app.reducer';
 import { appInitialState } from './state/app.init';
+import { AppEffects } from './state/app.effects';
+import { CoffeeService } from './services/coffee.service';
 
 
 @NgModule({
@@ -22,10 +24,10 @@ import { appInitialState } from './state/app.init';
     BrowserModule,
     HttpClientModule,
     StoreModule.forRoot({ app: appReducer }, { initialState: { app: appInitialState} }),
-    // EffectsModule.forRoot([]),
+    EffectsModule.forRoot([AppEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
-  providers: [],
+  providers: [AppEffects, CoffeeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
