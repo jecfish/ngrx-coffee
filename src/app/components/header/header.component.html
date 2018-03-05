@@ -1,7 +1,12 @@
 <ul>
-  <li *ngFor="let item of list">
-    <a routerLink="/{{item}}" routerLinkActive="active">
-      {{item}}
+  <li>
+    <a routerLink="/list" routerLinkActive="active">
+      list
     </a>
   </li>
+  <li>
+      <a routerLink="/cart" routerLinkActive="active">
+        cart ({{ cartCount$ | async }})
+      </a>
+    </li>
 </ul>

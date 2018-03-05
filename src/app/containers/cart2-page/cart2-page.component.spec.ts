@@ -1,19 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { CupComponent } from './cup.component';
 
-describe('CupComponent', () => {
-  let component: CupComponent;
-  let fixture: ComponentFixture<CupComponent>;
+import { Cart2PageComponent } from './cart2-page.component';
+
+describe('Cart2PageComponent', () => {
+  let component: Cart2PageComponent;
+  let fixture: ComponentFixture<Cart2PageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CupComponent ]
+      declarations: [ Cart2PageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CupComponent);
+    fixture = TestBed.createComponent(Cart2PageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

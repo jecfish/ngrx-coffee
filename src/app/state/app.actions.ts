@@ -21,9 +21,15 @@ export interface AddToCart {
     payload?: string;
 }
 
+export interface RemoveCartItem {
+    type: 'REMOVE_CART_ITEM';
+    payload: string;
+}
+
 export type AppAction =
     | GetCoffeeList
     | GetCoffeeListSuccess
     | GetCoffeeListFailed
-    | AddToCart;
+    | AddToCart
+    | RemoveCartItem;
 

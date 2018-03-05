@@ -1,6 +1,9 @@
 <ul>
   <li *ngFor="let coffee of (list$ | async)" (click)="addToCart(coffee.name)">
-    <h4>{{ coffee.name }}</h4>
+    <h4>{{ coffee.name }}
+      <br>
+      <small>{{ coffee.price | currency }}</small>
+    </h4>
     <app-cup [item]="coffee"></app-cup>
   </li>
 </ul>

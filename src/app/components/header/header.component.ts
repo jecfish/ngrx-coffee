@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as i from '../../state/app.interfaces';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  list = ['list', 'cart'];
+  cartCount$ = this.store.select(x => x.app.cart.length);
 
-  constructor() { }
+  constructor(private store: Store<i.AppState>) { }
 
   ngOnInit() {
   }

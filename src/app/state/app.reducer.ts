@@ -26,6 +26,14 @@ export function appReducer(state: i.App, action: a.AppAction): i.App {
             };
 
             return { ...state, ...current };
+        }:
+
+        case 'REMOVE_CART_ITEM': {
+            const current = {
+                cart: [...state.cart.filter(x => x !== action.payload)]
+            };
+
+            return { ...state, ...current };
         }
 
         default: {

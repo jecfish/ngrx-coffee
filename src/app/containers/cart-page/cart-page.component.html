@@ -1,3 +1,13 @@
-<p>
-  cart-page works!
-</p>
+<div class="list" *ngIf="cartList$ | async as cartList">
+  <p *ngIf="!cartList.length">No coffee, go add some.</p>
+  <ul>
+    <li *ngFor="let item of cartList">
+      <div class="left">
+          {{ item.key }}
+      </div>
+      <div class="right">
+          {{ item.value }}
+      </div>
+    </li>
+  </ul>
+</div>

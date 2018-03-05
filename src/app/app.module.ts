@@ -14,10 +14,10 @@ import { AppEffects } from './state/app.effects';
 import { CoffeeService } from './services/coffee.service';
 import { AppRoutingModule } from './app-routing.module';
 
-import { ListPageComponent, CartPageComponent } from './containers';
+import { ListPageComponent, CartPageComponent, Cart2PageComponent } from './containers';
 import { HeaderComponent, CupComponent } from './components';
 
-const APP_CONTAINERS = [ListPageComponent, CartPageComponent];
+const APP_CONTAINERS = [ListPageComponent, CartPageComponent, Cart2PageComponent];
 const APP_COMPONENTS = [HeaderComponent, CupComponent];
 
 @NgModule({

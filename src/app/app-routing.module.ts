@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ListPageComponent, CartPageComponent } from './containers';
+import { ListPageComponent, Cart2PageComponent } from './containers';
 
 const routes: Routes = [
   {
@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'cart',
-    component: CartPageComponent
+    component: Cart2PageComponent
   }
 ];
 
