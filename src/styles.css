@@ -2,3 +2,7 @@
 body {
     font-size: 14px;
 }
+
+ul {
+    padding: 0;
+}
