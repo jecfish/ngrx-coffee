@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import * as i from '../state/app.interfaces';
-import * as a from '../state/app.actions';
+import * as i from '../../state/app.interfaces';
+import * as a from '../../state/app.actions';
 import { Store } from '@ngrx/store';
-import { CoffeeService } from '../services/coffee.service';
+import { CoffeeService } from '../../services/coffee.service';
 
 
 @Component({

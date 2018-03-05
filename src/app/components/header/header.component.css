@@ -1,0 +1,27 @@
+ul {
+    display: flex;
+    justify-content: center;
+    border-bottom: 4px solid black;
+}
+
+li {
+    list-style: none;
+    padding: 10px 20px;
+}
+
+a {
+    color: black;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+a:hover {
+    color: grey;
+    text-decoration: none;
+    border-bottom: 1px dotted grey;
+}
+
+a.active {
+    color: goldenrod;
+    border-bottom: 1px dotted goldenrod;
+}
