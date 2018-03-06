@@ -4,6 +4,7 @@ import * as i from '../../state/app.interfaces';
 import * as a from '../../state/app.actions';
 import { Store } from '@ngrx/store';
 import { CoffeeService } from '../../services/coffee.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class ListPageComponent implements OnInit {
 
   list$ = this.store.select(x => x.app.coffeeList);
 
-  constructor(private coffeeSvc: CoffeeService, private store: Store<i.AppState>) { }
+  constructor(private coffeeSvc: CoffeeService, private router: Router, private store: Store<i.AppState>) { }
 
   ngOnInit() {
     this.store.dispatch({ type: 'GET_COFFEE_LIST' });
@@ -23,5 +24,10 @@ export class ListPageComponent implements OnInit {
 
   addToCart(name: string) {
     this.store.dispatch({ type: 'ADD_TO_CART', payload: name });
+  }
+
+  addToCartAndCheckout(name: string) {
+    this.addToCart(name);
+    this.router.navigateByUrl('/cart');
   }
 }

@@ -17,7 +17,7 @@ const routes: Routes = [
     component: Cart2PageComponent
   },
   {
-    path: 'customize',
+    path: 'remix',
     component: CustomizePageComponent
   }
 ];

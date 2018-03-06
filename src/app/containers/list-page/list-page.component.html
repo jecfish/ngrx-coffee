@@ -6,7 +6,7 @@
     </h4>
     <app-cup [item]="coffee" (click)="addToCart(coffee.name)"></app-cup>
     <div>
-      <button type="button" (click)="addToCart(coffee.name)"> grab </button>
+      <button type="button" (click)="addToCartAndCheckout(coffee.name)"> grab </button>
       <button type="button">remix</button>
     </div>
   </li>
