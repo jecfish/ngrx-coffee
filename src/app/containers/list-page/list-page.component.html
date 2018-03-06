@@ -1,9 +1,13 @@
 <ul>
-  <li *ngFor="let coffee of (list$ | async)" (click)="addToCart(coffee.name)">
+  <li *ngFor="let coffee of (list$ | async)">
     <h4>{{ coffee.name }}
       <br>
       <small>{{ coffee.price | currency }}</small>
     </h4>
-    <app-cup [item]="coffee"></app-cup>
+    <app-cup [item]="coffee" (click)="addToCart(coffee.name)"></app-cup>
+    <div>
+      <button type="button" (click)="addToCart(coffee.name)"> grab </button>
+      <button type="button">remix</button>
+    </div>
   </li>
 </ul>

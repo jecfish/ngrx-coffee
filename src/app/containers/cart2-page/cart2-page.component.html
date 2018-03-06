@@ -6,22 +6,22 @@
     </p>
     <ul>
       <li class="list-header">
-        <div class="left">Item</div>
-        <div class="middle">Unit</div>
-        <div class="right">Total</div>
-        <div class="right-most"></div>
+        <div>Item</div>
+        <div>Unit</div>
+        <div>Total</div>
+        <div></div>
       </li>
       <li *ngFor="let item of cartList">
-        <div class="left">
+        <div>
           {{ item.key }}
         </div>
-        <div class="middle">
+        <div>
           {{ item.value.unitPrice | currency }} x {{ item.value.quantity }}
         </div>
-        <div class="right">
+        <div>
           {{ item.value.price | currency }}
         </div>
-        <div class="right-most">
+        <div>
           <button class="delete" type="button" (click)="removeItem(item.key)">x</button>
         </div>
       </li>
