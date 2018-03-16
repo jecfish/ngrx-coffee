@@ -5,6 +5,7 @@ import * as a from '../../state/app.actions';
 import { Store } from '@ngrx/store';
 import { CoffeeService } from '../../services/coffee.service';
 import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 
 
 @Component({
@@ -19,7 +20,14 @@ export class ListPageComponent implements OnInit {
   constructor(private coffeeSvc: CoffeeService, private router: Router, private store: Store<i.AppState>) { }
 
   ngOnInit() {
-    this.store.dispatch({ type: 'GET_COFFEE_LIST' });
+    this.store.select(x => !!x.app.coffeeList.length)
+      .pipe(
+        take(1)
+      )
+      .subscribe(x => {
+        if (x) { return; }
+        this.store.dispatch({ type: 'GET_COFFEE_LIST' });
+      });
   }
 
   addToCart(name: string) {

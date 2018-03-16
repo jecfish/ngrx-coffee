@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as i from '../../state/app.interfaces';
 import { map } from 'rxjs/operators';
@@ -17,7 +18,8 @@ export class Cart2PageComponent implements OnInit {
   cartList$ = combineLatest(this.coffeeList$, this.cart$).pipe(
     map(([list, cart]) => cart.map(c => list.find(x => x.name === c))),
     map(x => x.reduce(this.groupCart, {})),
-    map(x => Object.entries(x).map(([key, value]) => ({ key, value })))
+    map(x => Object.entries(x).map(([key, value]) => ({ key, value }))),
+    map(x => x.sort((a, b) => a.key < b.key ? -1 : 1))
   );
 
   total$ = this.cartList$.pipe(
@@ -25,7 +27,7 @@ export class Cart2PageComponent implements OnInit {
     map(x => x.reduce((acc, curr) => acc + curr, 0))
   );
 
-  constructor(private store: Store<i.AppState>) { }
+  constructor(private store: Store<i.AppState>, private router: Router) { }
 
   ngOnInit() {
   }
@@ -46,6 +48,20 @@ export class Cart2PageComponent implements OnInit {
     obj[name].price = obj[name].price + price;
 
     return obj;
+  }
+
+  pay() {
+    alert('Yay, order placed. Start a new order!');
+    this.store.dispatch({ type: 'EMPTY_CART' });
+    this.router.navigateByUrl('/menu');
+  }
+
+  addOneItem(name) {
+    this.store.dispatch({ type: 'ADD_TO_CART', payload: name });
+  }
+
+  removeOneItem(name) {
+    this.store.dispatch({ type: 'REMOVE_ONE_CART_ITEM', payload: name });
   }
 
   removeItem(name) {

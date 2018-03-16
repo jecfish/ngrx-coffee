@@ -7,7 +7,7 @@
     <app-cup [item]="coffee" (click)="addToCart(coffee.name)"></app-cup>
     <div>
       <button type="button" (click)="addToCartAndCheckout(coffee.name)"> grab </button>
-      <button type="button">remix</button>
+      <button type="button" routerLink="/remix" [queryParams]="{ template: coffee.name }">remix</button>
     </div>
   </li>
 </ul>

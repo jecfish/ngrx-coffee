@@ -30,3 +30,20 @@ label {
     max-width: 400px;
     margin: 0 auto;
 }
+
+button {
+  border: 4px solid black;
+  background: antiquewhite;
+  margin: 0 6px;
+}
+
+button:hover {
+  border-color: goldenrod;
+  color: goldenrod;
+}
+
+.quantity-label {
+  width: 24px;
+  text-align: center;
+  display: inline-block;
+}

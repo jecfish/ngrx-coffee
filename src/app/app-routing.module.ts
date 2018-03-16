@@ -6,10 +6,10 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/list'
+    redirectTo: '/menu'
   },
   {
-    path: 'list',
+    path: 'menu',
     component: ListPageComponent
   },
   {

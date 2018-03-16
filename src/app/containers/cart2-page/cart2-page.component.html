@@ -1,9 +1,9 @@
 <div class="list" *ngIf="cartList$ | async as cartList">
   <p *ngIf="!cartList.length">No coffee, go add some.</p>
   <div *ngIf="cartList.length">
-    <p>
+    <button class="pay" type="button" (click)="pay()">
       Total: {{ total$ | async | currency }}
-    </p>
+    </button>
     <ul>
       <li class="list-header">
         <div>Item</div>
@@ -16,7 +16,11 @@
           {{ item.key }}
         </div>
         <div>
-          {{ item.value.unitPrice | currency }} x {{ item.value.quantity }}
+          <span class="unit-desc">{{ item.value.unitPrice | currency }} x {{ item.value.quantity }}</span>
+          <div class="unit-controller">
+            <button type="button" (click)="addOneItem(item.key)">+</button>
+            <button type="button" (click)="removeOneItem(item.key)">-</button>
+          </div>
         </div>
         <div>
           {{ item.value.price | currency }}
