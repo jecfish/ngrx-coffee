@@ -20,14 +20,6 @@ export function appReducer(state: i.App, action: a.AppAction): i.App {
             return { ...state, ...current };
         }
 
-        case 'ADD_TO_COFFEE_LIST': {
-            const current = {
-                coffeeList: [...state.coffeeList, ...action.payload]
-            };
-
-            return { ...state, ...current };
-        }
-
         case 'ADD_TO_CART': {
             const current = {
                 cart: [...state.cart, action.payload]
@@ -54,6 +46,24 @@ export function appReducer(state: i.App, action: a.AppAction): i.App {
             return { ...state, ...current };
         }
 
+        case 'EMPTY_CART': {
+            const current = {
+                cart: []
+            };
+
+            return { ...state, ...current };
+        }
+
+        /* extra, with remix */
+
+        case 'ADD_TO_COFFEE_LIST': {
+            const current = {
+                coffeeList: [...state.coffeeList, ...action.payload]
+            };
+
+            return { ...state, ...current };
+        }
+
         case 'NEXT_RUNNING_NO': {
 
             const current = {
@@ -63,13 +73,7 @@ export function appReducer(state: i.App, action: a.AppAction): i.App {
             return { ...state, ...current };
         }
 
-        case 'EMPTY_CART': {
-            const current = {
-                cart: []
-            };
-
-            return { ...state, ...current };
-        }
+        /* default state */
 
         default: {
             return state;
