@@ -4,6 +4,7 @@ ul {
     display: grid;
     justify-content: center;
     margin: 0 auto;
+    margin-bottom: 100px;
 }
 
 div {
@@ -21,9 +22,20 @@ button:hover {
   color: goldenrod;
 }
 
+app-pay {
+  display: none;
+}
+
 @media (min-width: 500px) {
   ul {
     grid-template-columns: repeat(2, auto);
+  }
+
+  app-pay {
+    display: block;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
   }
 }
 

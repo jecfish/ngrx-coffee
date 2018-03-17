@@ -1,9 +1,7 @@
 <div class="list" *ngIf="cartList$ | async as cartList">
   <p *ngIf="!cartList.length">No coffee, go add some.</p>
   <div *ngIf="cartList.length">
-    <button class="pay" type="button" (click)="pay()">
-      Total: {{ total$ | async | currency }}
-    </button>
+    <app-pay></app-pay>
     <ul>
       <li class="list-header">
         <div>Item</div>

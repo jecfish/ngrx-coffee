@@ -15,7 +15,7 @@ import { take } from 'rxjs/operators';
 })
 export class ListPageComponent implements OnInit {
 
-  list$ = this.store.select(x => x.app.coffeeList);
+  list$ = this.store.select(x => x.app.coffeeList.filter(c => !c.name.startsWith('Special')));
 
   constructor(private coffeeSvc: CoffeeService, private router: Router, private store: Store<i.AppState>) { }
 

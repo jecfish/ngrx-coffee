@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { ListPageComponent, CartPageComponent, Cart2PageComponent, CustomizePageComponent } from './containers';
 import { HeaderComponent, CupComponent } from './components';
+import { PayComponent } from './components/pay/pay.component';
 
 const APP_CONTAINERS = [ListPageComponent, CartPageComponent, Cart2PageComponent, CustomizePageComponent];
 const APP_COMPONENTS = [HeaderComponent, CupComponent];
@@ -26,6 +27,7 @@ const APP_COMPONENTS = [HeaderComponent, CupComponent];
     AppComponent,
     ...APP_CONTAINERS,
     ...APP_COMPONENTS,
+    PayComponent,
   ],
   imports: [
     BrowserModule,

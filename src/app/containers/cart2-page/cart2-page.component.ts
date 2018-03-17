@@ -50,12 +50,6 @@ export class Cart2PageComponent implements OnInit {
     return obj;
   }
 
-  pay() {
-    alert('Yay, order placed. Start a new order!');
-    this.store.dispatch({ type: 'EMPTY_CART' });
-    this.router.navigateByUrl('/menu');
-  }
-
   addOneItem(name) {
     this.store.dispatch({ type: 'ADD_TO_CART', payload: name });
   }
