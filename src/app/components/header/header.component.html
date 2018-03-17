@@ -9,7 +9,7 @@
       cart ({{ cartCount$ | async }})
     </a>
   </li>
-  <li>
+  <li *ngIf="isFeatureRemixOn">
     <a routerLink="/remix" routerLinkActive="active">
       remix
     </a>

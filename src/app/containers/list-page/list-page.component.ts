@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { CoffeeService } from '../../services/coffee.service';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { take } from 'rxjs/operators';
 export class ListPageComponent implements OnInit {
 
   list$ = this.store.select(x => x.app.coffeeList.filter(c => !c.name.startsWith('Special')));
+  isFeatureRemixOn = environment.features.remix;
 
   constructor(private coffeeSvc: CoffeeService, private router: Router, private store: Store<i.AppState>) { }
 
