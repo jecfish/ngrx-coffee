@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import * as i from '../../state/app.interfaces';
 import { map } from 'rxjs/operators';
 import { combineLatest } from 'rxjs/observable/combineLatest';
@@ -11,21 +11,18 @@ import { combineLatest } from 'rxjs/observable/combineLatest';
   styleUrls: ['./cart2-page.component.css']
 })
 export class Cart2PageComponent implements OnInit {
-  // complete cart, with quantity, price, add, delete
-  private coffeeList$ = this.store.select(x => x.app.coffeeList);
-  private cart$ = this.store.select(x => x.app.cart);
 
-  cartList$ = combineLatest(this.coffeeList$, this.cart$).pipe(
-    map(([list, cart]) => cart.map(c => list.find(x => x.name === c))),
-    map(x => x.reduce(this.groupCart, {})),
-    map(x => Object.entries(x).map(([key, value]) => ({ key, value }))),
-    map(x => x.sort((a, b) => a.key < b.key ? -1 : 1))
-  );
-
-  total$ = this.cartList$.pipe(
-    map(x => x.map(g => (g.value as any).price)),
-    map(x => x.reduce((acc, curr) => acc + curr, 0))
-  );
+  cartList$ = this.store
+    .pipe(
+      // list of cart coffee object
+      select(x => x.app.cart.map(item => x.app.coffeeList.find(c => c.name === item))),
+      // group by name, sum quantity
+      map(x => x.reduce(this.groupCart, {})),
+      // map to array of key value for display
+      map(x => Object.entries(x).map(([key, value]) => ({ key, value }))),
+      // sort by name
+      map(x => x.sort((a, b) => a.key < b.key ? -1 : 1))
+    );
 
   constructor(private store: Store<i.AppState>, private router: Router) { }
 
