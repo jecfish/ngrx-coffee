@@ -16,11 +16,6 @@ export interface GetCoffeeListFailed {
     payload?: any;
 }
 
-export interface AddToCoffeeList {
-    type: 'ADD_TO_COFFEE_LIST';
-    payload: i.Coffee[];
-}
-
 export interface AddToCart {
     type: 'ADD_TO_CART';
     payload?: string;
@@ -40,18 +35,27 @@ export interface EmptyCart {
     type: 'EMPTY_CART';
 }
 
+/* extra - with remix */
+
+export interface AddToCoffeeList {
+    type: 'ADD_TO_COFFEE_LIST';
+    payload: i.Coffee[];
+}
+
 export interface NextRunningNo {
     type: 'NEXT_RUNNING_NO';
 }
+
+/* export types */
 
 export type AppAction =
     | GetCoffeeList
     | GetCoffeeListSuccess
     | GetCoffeeListFailed
-    | AddToCoffeeList
     | AddToCart
     | RemoveCartItem
     | RemoveOneCartItem
     | EmptyCart
+    | AddToCoffeeList
     | NextRunningNo;
 
