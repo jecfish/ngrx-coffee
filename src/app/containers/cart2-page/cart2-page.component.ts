@@ -15,36 +15,25 @@ export class Cart2PageComponent implements OnInit {
   cartList$ = this.store
     .pipe(
       // list of cart coffee object
-      select(x => x.app.cart.map(item => x.app.coffeeList.find(c => c.name === item))),
-      // group by name, sum quantity
-      map(x => x.reduce(this.groupCart, {})),
-      // map to array of key value for display
-      map(x => Object.entries(x).map(([key, value]) => ({ key, value }))),
+      select(x => x.app.cart.map(item => {
+        // get coffee object by name
+        const { name, price, recipe } = x.app.coffeeList.find(c => c.name === item.name);
+
+        return {
+          name,
+          quantity: item.quantity,
+          unitPrice: price,
+          price: item.quantity * price, // sum quantity
+          recipe
+        };
+      })),
       // sort by name
-      map(x => x.sort((a, b) => a.key < b.key ? -1 : 1))
+      map(x => x.sort((a, b) => a.name < b.name ? -1 : 1))
     );
 
   constructor(private store: Store<i.AppState>, private router: Router) { }
 
   ngOnInit() {
-  }
-
-  private groupCart(acc, curr) {
-    const { name, price, recipe } = curr;
-    const item = {
-      name,
-      unitPrice: price,
-      recipe,
-      quantity: 0,
-      price: 0
-    };
-
-    const obj = { [name]: { ...item, }, ...acc };
-
-    obj[name].quantity = obj[name].quantity + 1;
-    obj[name].price = obj[name].price + price;
-
-    return obj;
   }
 
   addOneItem(name) {

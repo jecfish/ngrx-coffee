@@ -11,20 +11,20 @@
       </li>
       <li *ngFor="let item of cartList">
         <div>
-          {{ item.key }}
+          {{ item.name }}
         </div>
         <div>
-          <span class="unit-desc">{{ item.value.unitPrice | currency }} x {{ item.value.quantity }}</span>
+          <span class="unit-desc">{{ item.unitPrice | currency }} x {{ item.quantity }}</span>
           <div class="unit-controller">
-            <button type="button" (click)="addOneItem(item.key)">+</button>
-            <button type="button" (click)="removeOneItem(item.key)">-</button>
+            <button type="button" (click)="addOneItem(item.name)">+</button>
+            <button type="button" (click)="removeOneItem(item.name)">-</button>
           </div>
         </div>
         <div>
-          {{ item.value.price | currency }}
+          {{ item.price | currency }}
         </div>
         <div>
-          <button class="delete" type="button" (click)="removeItem(item.key)">x</button>
+          <button class="delete" type="button" (click)="removeItem(item.name)">x</button>
         </div>
       </li>
     </ul>
