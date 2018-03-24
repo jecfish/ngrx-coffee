@@ -16,7 +16,7 @@ export class PayComponent implements OnInit {
   private cart$ = this.store.select(x => x.app.cart);
 
   total$ = combineLatest(this.coffeeList$, this.cart$).pipe(
-    map(([list, cart]) => cart.map(c => list.find(x => x.name === c).price)),
+    map(([list, cart]) => cart.map(c => list.find(x => x.name === c.name).price * c.quantity)),
     map(x => x.reduce((acc, curr) => acc + curr, 0))
   );
 

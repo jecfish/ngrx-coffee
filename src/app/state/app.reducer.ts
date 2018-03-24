@@ -21,26 +21,37 @@ export function appReducer(state: i.App, action: a.AppAction): i.App {
         }
 
         case 'ADD_TO_CART': {
+            // find cart item by item name
+            const { quantity = 0 } = state.cart.find(x => x.name === action.payload) || {};
+
             const current = {
-                cart: [...state.cart, action.payload]
-            };
+                    cart: [
+                        ...state.cart.filter(x => x.name !== action.payload),
+                        {
+                            name: action.payload, quantity: quantity + 1
+                        }
+                    ]
+                };
 
             return { ...state, ...current };
         }
 
         case 'REMOVE_CART_ITEM': {
             const current = {
-                cart: [...state.cart.filter(x => x !== action.payload)]
+                cart: [...state.cart.filter(x => x.name !== action.payload)]
             };
 
             return { ...state, ...current };
         }
 
         case 'REMOVE_ONE_CART_ITEM': {
-            const itemIdx = state.cart.findIndex(x => x === action.payload);
+            const item = state.cart.find(x => x.name === action.payload);
 
             const current = {
-                cart: [...state.cart.filter((_, idx) => idx !== itemIdx)]
+                cart: [
+                    ...state.cart.filter(x => x.name !== action.payload),
+                    { name: item.name, quantity: item.quantity - 1 }
+                ]
             };
 
             return { ...state, ...current };
