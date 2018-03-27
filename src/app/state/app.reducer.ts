@@ -1,8 +1,8 @@
 import * as i from './app.interfaces';
-import * as a from './app.actions';
+import { AppAction } from './app.actions';
 import { appInitialState } from './app.init';
 
-export function appReducer(state: i.App, action: a.AppAction): i.App {
+export function appReducer(state: i.App, action: AppAction): i.App {
     switch (action.type) {
         case 'GET_COFFEE_LIST_SUCCESS': {
             const current = {

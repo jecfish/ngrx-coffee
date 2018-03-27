@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as i from '../../state/app.interfaces';
-import * as a from '../../state/app.actions';
 import { Store } from '@ngrx/store';
 import { CoffeeService } from '../../services/coffee.service';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
+import { GetCoffeeList, AddToCart } from '../../state/app.actions';
 
 
 @Component({
@@ -28,12 +28,12 @@ export class ListPageComponent implements OnInit {
       )
       .subscribe(x => {
         if (x) { return; }
-        this.store.dispatch({ type: 'GET_COFFEE_LIST' });
+        this.store.dispatch(new GetCoffeeList());
       });
   }
 
   addToCart(name: string) {
-    this.store.dispatch({ type: 'ADD_TO_CART', payload: name });
+    this.store.dispatch(new AddToCart(name));
   }
 
   addToCartAndCheckout(name: string) {

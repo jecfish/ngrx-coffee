@@ -4,6 +4,7 @@ import { Store, select } from '@ngrx/store';
 import * as i from '../../state/app.interfaces';
 import { map } from 'rxjs/operators';
 import { combineLatest } from 'rxjs/observable/combineLatest';
+import { AddToCart, RemoveOneCartItem, RemoveCartItem } from '../../state/app.actions';
 
 @Component({
   selector: 'app-cart2-page',
@@ -37,15 +38,15 @@ export class Cart2PageComponent implements OnInit {
   }
 
   addOneItem(name) {
-    this.store.dispatch({ type: 'ADD_TO_CART', payload: name });
+    this.store.dispatch(new AddToCart(name));
   }
 
   removeOneItem(name) {
-    this.store.dispatch({ type: 'REMOVE_ONE_CART_ITEM', payload: name });
+    this.store.dispatch(new RemoveOneCartItem(name));
   }
 
   removeItem(name) {
-    this.store.dispatch({ type: 'REMOVE_CART_ITEM', payload: name });
+    this.store.dispatch(new RemoveCartItem(name));
   }
 
 }

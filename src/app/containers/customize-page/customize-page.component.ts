@@ -5,6 +5,7 @@ import * as i from '../../state/app.interfaces';
 import { Store } from '@ngrx/store';
 import { take, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs/Subject';
+import { AddToCoffeeList, AddToCart, NextRunningNo } from '../../state/app.actions';
 
 @Component({
   selector: 'app-customize-page',
@@ -51,9 +52,9 @@ export class CustomizePageComponent implements OnInit, OnDestroy {
   }
 
   addToCart(coffee: i.Coffee) {
-    this.store.dispatch({ type: 'ADD_TO_COFFEE_LIST', payload: [coffee] });
-    this.store.dispatch({ type: 'ADD_TO_CART', payload: coffee.name });
-    this.store.dispatch({ type: 'NEXT_RUNNING_NO' });
+    this.store.dispatch(new AddToCoffeeList([coffee]));
+    this.store.dispatch(new AddToCart(coffee.name));
+    this.store.dispatch(new NextRunningNo());
     this.router.navigateByUrl('/cart');
   }
 
