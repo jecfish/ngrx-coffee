@@ -50,7 +50,7 @@ export function appReducer(state: i.App, action: AppAction): i.App {
             const current = {
                 cart: [
                     ...state.cart.filter(x => x.name !== action.payload),
-                    { name: item.name, quantity: item.quantity - 1 }
+                    ...(item.quantity - 1 <= 0 ? [] : [{ name: item.name, quantity: item.quantity - 1 }])
                 ]
             };
 
