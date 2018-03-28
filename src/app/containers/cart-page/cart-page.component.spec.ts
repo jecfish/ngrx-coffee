@@ -1,16 +1,26 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CartPageComponent } from './cart-page.component';
+import { PayComponent } from '../../components/pay/pay.component';
+import { StoreModule } from '@ngrx/store';
+import { appInitialState } from '../../state/app.init';
+import { appReducer } from '../../state/app.reducer';
 
-describe('Cart2PageComponent', () => {
+describe('CartPageComponent', () => {
   let component: CartPageComponent;
   let fixture: ComponentFixture<CartPageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CartPageComponent ]
+      imports: [
+        StoreModule.forRoot(
+          { app: appReducer },
+          { initialState: { app: appInitialState } }
+        )
+      ],
+      declarations: [CartPageComponent, PayComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

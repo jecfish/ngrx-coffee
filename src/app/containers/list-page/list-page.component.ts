@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as i from '../../state/app.interfaces';
 import { Store } from '@ngrx/store';
-import { CoffeeService } from '../../services/coffee.service';
+
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
@@ -19,7 +19,7 @@ export class ListPageComponent implements OnInit {
   list$ = this.store.select(x => x.app.coffeeList.filter(c => !c.name.startsWith('Special')));
   isFeatureRemixOn = environment.features.remix;
 
-  constructor(private coffeeSvc: CoffeeService, private router: Router, private store: Store<i.AppState>) { }
+  constructor(private router: Router, private store: Store<i.AppState>) { }
 
   ngOnInit() {
     this.store.select(x => !!x.app.coffeeList.length)
