@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ListPageComponent, CartPageComponent, CustomizePageComponent } from './containers';
+import { ListPageComponent, CartPageComponent } from './containers';
 
 const routes: Routes = [
   {
@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'remix',
-    component: CustomizePageComponent
+    loadChildren: './modules/remix/remix.module#RemixModule'
   }
 ];
 

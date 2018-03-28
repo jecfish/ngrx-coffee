@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import * as i from '../../state/app.interfaces';
+import * as i from '../../+state/remix.interfaces';
 import { Store } from '@ngrx/store';
 import { take, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs/Subject';
-import { AddToCoffeeList, AddToCart, NextRunningNo } from '../../state/app.actions';
+import { NextRunningNo } from '../../+state/remix.actions';
+import { AddToCoffeeList, AddToCart } from '../../../../state/app.actions';
 
 @Component({
   selector: 'app-customize-page',
@@ -32,13 +33,13 @@ export class CustomizePageComponent implements OnInit, OnDestroy {
 
   coffee = { ...this.defaultCoffee };
 
-  constructor(private route: ActivatedRoute, private router: Router, private store: Store<i.AppState>) { }
+  constructor(private route: ActivatedRoute, private router: Router, private store: Store<i.RemixState>) { }
 
   ngOnInit() {
     const { template = '' } = this.route.snapshot.queryParams;
     this.store.select(x => ({
       template: x.app.coffeeList.find(c => c.name === template),
-      runningNo: x.app.runningNo
+      runningNo: x.remix.runningNo
     }))
       .pipe(
         takeUntil(this.destroy$)
@@ -51,10 +52,12 @@ export class CustomizePageComponent implements OnInit, OnDestroy {
       });
   }
 
-  addToCart(coffee: i.Coffee) {
+  addToCart(coffee: any) {
+    // actions
     this.store.dispatch(new AddToCoffeeList([coffee]));
     this.store.dispatch(new AddToCart(coffee.name));
     this.store.dispatch(new NextRunningNo());
+    // route
     this.router.navigateByUrl('/cart');
   }
 

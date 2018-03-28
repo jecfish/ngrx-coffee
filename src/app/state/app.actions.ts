@@ -1,6 +1,8 @@
 import { Action } from '@ngrx/store';
 import * as i from './app.interfaces';
 
+/* coffee list */
+
 export class GetCoffeeList implements Action {
     readonly type = 'GET_COFFEE_LIST';
     constructor() { }
@@ -15,6 +17,8 @@ export class GetCoffeeListFailed implements Action {
     readonly type = 'GET_COFFEE_LIST_FAILED';
     constructor(public payload?: any) { }
 }
+
+/* cart */
 
 export class AddToCart implements Action {
     readonly type = 'ADD_TO_CART';
@@ -43,11 +47,6 @@ export class AddToCoffeeList implements Action {
     constructor(public payload: i.Coffee[]) { }
 }
 
-export class NextRunningNo implements Action {
-    readonly type = 'NEXT_RUNNING_NO';
-    constructor() { }
-}
-
 /* export types */
 
 export type AppAction =
@@ -58,6 +57,5 @@ export type AppAction =
     | RemoveCartItem
     | RemoveOneCartItem
     | EmptyCart
-    | AddToCoffeeList
-    | NextRunningNo;
+    | AddToCoffeeList;
 

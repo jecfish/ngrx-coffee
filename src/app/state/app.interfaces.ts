@@ -2,7 +2,6 @@ export interface App {
     // define state here
     coffeeList: Coffee[];
     cart: { name: string; quantity: number }[];
-    runningNo: number;
 }
 
 export interface AppState {

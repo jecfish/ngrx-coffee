@@ -5,8 +5,8 @@ import { StoreModule } from '@ngrx/store';
 import { CustomizePageComponent } from './customize-page.component';
 import { CupComponent } from '../../components';
 
-import { appReducer } from '../../state/app.reducer';
-import { appInitialState } from '../../state/app.init';
+import { appReducer } from '../../state/remix.reducer';
+import { appInitialState } from '../../state/remix.init';
 
 describe('CustomizePageComponent', () => {
   let component: CustomizePageComponent;

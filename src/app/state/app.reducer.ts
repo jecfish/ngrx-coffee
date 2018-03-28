@@ -75,15 +75,6 @@ export function appReducer(state: i.App, action: AppAction): i.App {
             return { ...state, ...current };
         }
 
-        case 'NEXT_RUNNING_NO': {
-
-            const current = {
-                runningNo: state.runningNo + 1
-            };
-
-            return { ...state, ...current };
-        }
-
         /* default state */
 
         default: {

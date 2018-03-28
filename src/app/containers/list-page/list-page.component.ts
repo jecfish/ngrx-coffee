@@ -16,7 +16,8 @@ import { GetCoffeeList, AddToCart } from '../../state/app.actions';
 })
 export class ListPageComponent implements OnInit {
 
-  list$ = this.store.select(x => x.app.coffeeList.filter(c => !c.name.startsWith('Special')));
+  // .filter(c => !c.name.startsWith('Special'))
+  list$ = this.store.select(x => x.app.coffeeList);
   isFeatureRemixOn = environment.features.remix;
 
   constructor(private router: Router, private store: Store<i.AppState>) { }

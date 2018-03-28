@@ -15,19 +15,18 @@ import { AppEffects } from './state/app.effects';
 import { CoffeeService } from './services/coffee.service';
 import { AppRoutingModule } from './app-routing.module';
 
-import { ListPageComponent, CartPageComponent, CustomizePageComponent } from './containers';
-import { HeaderComponent, CupComponent } from './components';
-import { PayComponent } from './components/pay/pay.component';
+import { ListPageComponent, CartPageComponent } from './containers';
+import { HeaderComponent, PayComponent } from './components';
+import { SharedModule } from './modules/shared';
 
-const APP_CONTAINERS = [ListPageComponent, CartPageComponent, CustomizePageComponent];
-const APP_COMPONENTS = [HeaderComponent, CupComponent];
+const APP_CONTAINERS = [ListPageComponent, CartPageComponent];
+const APP_COMPONENTS = [HeaderComponent, PayComponent];
 
 @NgModule({
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
     ...APP_COMPONENTS,
-    PayComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +35,7 @@ const APP_COMPONENTS = [HeaderComponent, CupComponent];
     StoreModule.forRoot({ app: appReducer }, { initialState: { app: appInitialState} }),
     EffectsModule.forRoot([AppEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    SharedModule,
     AppRoutingModule,
   ],
   providers: [AppEffects, CoffeeService],
