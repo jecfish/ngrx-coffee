@@ -8,7 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { remixReducer } from './+state/remix.reducer';
 import { remixInitialState } from './+state/remix.init';
 
-const APP_CONTAINERS = [CustomizePageComponent];
+const CONTAINERS = [CustomizePageComponent];
 
 @NgModule({
   imports: [
@@ -19,7 +19,7 @@ const APP_CONTAINERS = [CustomizePageComponent];
     RemixRoutingModule
   ],
   declarations: [
-    ...APP_CONTAINERS
+    ...CONTAINERS
   ]
 })
 export class RemixModule { }

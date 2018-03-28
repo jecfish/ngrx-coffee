@@ -1,7 +1,7 @@
 import {
     GetCoffeeListSuccess, GetCoffeeListFailed,
     AddToCart, RemoveCartItem, RemoveOneCartItem,
-    EmptyCart, AddToCoffeeList, NextRunningNo
+    EmptyCart, AddToCoffeeList
 } from './app.actions';
 import { appReducer } from './app.reducer';
 import { appInitialState } from './app.init';
@@ -227,28 +227,6 @@ describe('App Reducer', () => {
             const action = new AddToCoffeeList([
                 { name: 'coffee oo', price: 2, recipe: [] }
             ]);
-            const actual = appReducer(currentState, action);
-
-            // assert
-            expect(actual).toEqual(expectedState);
-        });
-    });
-
-    describe('NEXT_RUNNING_NO', () => {
-        it('should increase runnning no', () => {
-            // arrange
-            const currentState = {
-                ...appInitialState,
-                runningNo: 4
-            };
-
-            const expectedState = {
-                ...appInitialState,
-                runningNo: 5
-            };
-
-            // action
-            const action = new NextRunningNo();
             const actual = appReducer(currentState, action);
 
             // assert

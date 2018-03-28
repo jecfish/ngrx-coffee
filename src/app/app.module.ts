@@ -19,20 +19,24 @@ import { ListPageComponent, CartPageComponent } from './containers';
 import { HeaderComponent, PayComponent } from './components';
 import { SharedModule } from './modules/shared';
 
-const APP_CONTAINERS = [ListPageComponent, CartPageComponent];
-const APP_COMPONENTS = [HeaderComponent, PayComponent];
+const CONTAINERS = [ListPageComponent, CartPageComponent];
+const COMPONENTS = [HeaderComponent, PayComponent];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ...APP_CONTAINERS,
-    ...APP_COMPONENTS,
+    ...CONTAINERS,
+    ...COMPONENTS,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    StoreModule.forRoot({ app: appReducer }, { initialState: { app: appInitialState} }),
+    StoreModule.forRoot(
+      { app: appReducer },
+      {
+        initialState: { app: appInitialState }
+      }),
     EffectsModule.forRoot([AppEffects]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     SharedModule,

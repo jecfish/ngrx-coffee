@@ -2,17 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CupComponent } from './components';
 
-const APP_COMPONENTS = [CupComponent];
+const COMPONENTS = [CupComponent];
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    ...APP_COMPONENTS
+    ...COMPONENTS
   ],
   exports: [
-    ...APP_COMPONENTS
+    ...COMPONENTS
   ]
 })
 export class SharedModule { }

@@ -3,11 +3,11 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { StoreModule } from '@ngrx/store';
 
 import { ListPageComponent } from './list-page.component';
-import { CupComponent } from '../../components';
 import { PayComponent } from '../../components/pay/pay.component';
 
 import { appReducer } from '../../state/app.reducer';
 import { appInitialState } from '../../state/app.init';
+import { SharedModule } from '../../modules/shared';
 
 describe('ListPageComponent', () => {
   let component: ListPageComponent;
@@ -17,12 +17,13 @@ describe('ListPageComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
+        SharedModule,
         StoreModule.forRoot(
           { app: appReducer },
           { initialState: { app: appInitialState } }
         )
       ],
-      declarations: [ ListPageComponent, CupComponent, PayComponent ]
+      declarations: [ ListPageComponent, PayComponent ]
     })
     .compileComponents();
   }));

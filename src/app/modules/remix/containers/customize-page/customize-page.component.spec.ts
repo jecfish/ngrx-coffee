@@ -3,10 +3,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { StoreModule } from '@ngrx/store';
 
 import { CustomizePageComponent } from './customize-page.component';
-import { CupComponent } from '../../components';
 
-import { appReducer } from '../../state/remix.reducer';
-import { appInitialState } from '../../state/remix.init';
+import { remixReducer } from '../../+state/remix.reducer';
+import { remixInitialState } from '../../+state/remix.init';
+import { SharedModule } from '../../../shared';
+import { appReducer } from '../../../../state/app.reducer';
+import { appInitialState } from '../../../../state/app.init';
 
 describe('CustomizePageComponent', () => {
   let component: CustomizePageComponent;
@@ -16,12 +18,14 @@ describe('CustomizePageComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
+        SharedModule,
         StoreModule.forRoot(
           { app: appReducer },
           { initialState: { app: appInitialState } }
-        )
+        ),
+        StoreModule.forFeature('remix', remixReducer, { initialState: remixInitialState })
       ],
-      declarations: [ CustomizePageComponent, CupComponent ]
+      declarations: [ CustomizePageComponent ]
     })
     .compileComponents();
   }));
