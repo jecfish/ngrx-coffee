@@ -1,4 +1,8 @@
-import { GetCoffeeListSuccess, GetCoffeeListFailed, AddToCart, RemoveCartItem, RemoveOneCartItem, EmptyCart, AddToCoffeeList, NextRunningNo } from './app.actions';
+import {
+    GetCoffeeListSuccess, GetCoffeeListFailed,
+    AddToCart, RemoveCartItem, RemoveOneCartItem,
+    EmptyCart, AddToCoffeeList, NextRunningNo
+} from './app.actions';
 import { appReducer } from './app.reducer';
 import { appInitialState } from './app.init';
 
