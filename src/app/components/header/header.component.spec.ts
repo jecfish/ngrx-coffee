@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { StoreModule } from '@ngrx/store';
 
 import { HeaderComponent } from './header.component';
-import { StoreModule } from '@ngrx/store';
+
 import { appReducer } from '../../state/app.reducer';
 import { appInitialState } from '../../state/app.init';
 

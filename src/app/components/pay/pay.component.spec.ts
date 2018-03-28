@@ -1,7 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { PayComponent } from './pay.component';
 import { StoreModule } from '@ngrx/store';
+
+import { PayComponent } from './pay.component';
+
 import { appReducer } from '../../state/app.reducer';
 import { appInitialState } from '../../state/app.init';
 

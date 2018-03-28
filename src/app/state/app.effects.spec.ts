@@ -1,19 +1,22 @@
 import { TestBed } from '@angular/core/testing';
-import { provideMockActions } from '@ngrx/effects/testing';
-import { hot, cold } from 'jasmine-marbles';
-import { AppEffects } from './app.effects';
-import { Observable } from 'rxjs/Observable';
-// import 'rxjs/add/observable/throw';
-import { _throw } from 'rxjs/observable/throw';
-import * as AppActions from './app.actions';
-import { CoffeeService } from '../services/coffee.service';
-import { of } from 'rxjs/observable/of';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
 import { StoreModule } from '@ngrx/store';
+
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+import { _throw } from 'rxjs/observable/throw';
+// import 'rxjs/add/observable/throw';
+import { hot, cold } from 'jasmine-marbles';
+
+import { CoffeeService } from '../services/coffee.service';
+import * as AppActions from './app.actions';
 import { appReducer } from './app.reducer';
 import { appInitialState } from './app.init';
+import { AppEffects } from './app.effects';
 
 // https://github.com/ngrx/platform/blob/master/docs/effects/testing.md
+// https://github.com/ReactiveX/rxjs/blob/5.4.2/doc/writing-marble-tests.md
 
 describe('My Effects', () => {
     let effects: AppEffects;
