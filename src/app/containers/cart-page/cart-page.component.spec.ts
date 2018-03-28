@@ -5,6 +5,7 @@ import { PayComponent } from '../../components/pay/pay.component';
 import { StoreModule } from '@ngrx/store';
 import { appInitialState } from '../../state/app.init';
 import { appReducer } from '../../state/app.reducer';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('CartPageComponent', () => {
   let component: CartPageComponent;
@@ -13,6 +14,7 @@ describe('CartPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        RouterTestingModule,
         StoreModule.forRoot(
           { app: appReducer },
           { initialState: { app: appInitialState } }
