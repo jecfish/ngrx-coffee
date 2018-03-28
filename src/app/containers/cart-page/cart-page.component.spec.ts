@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CartPageComponent } from './cart-page.component';
 
-describe('CartPageComponent', () => {
+describe('Cart2PageComponent', () => {
   let component: CartPageComponent;
   let fixture: ComponentFixture<CartPageComponent>;
 
