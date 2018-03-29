@@ -12,6 +12,7 @@ export class HeaderComponent implements OnInit {
 
   cartCount$ = this.store.select(x => x.app.cart.map(item => item.quantity).reduce((acc, curr) => acc + curr, 0));
   isFeatureRemixOn = environment.features.remix;
+  isFeatureBaristaOn = environment.features.barista;
 
   constructor(private store: Store<i.AppState>) { }
 

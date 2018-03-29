@@ -1,0 +1,12 @@
+<h1>total barista: {{ total$ | async }}</h1>
+<button type="button" (click)="reset()" >reset</button>
+<div>
+  <input type="text" name="name" ngModel #name="ngModel"> 
+  <button type="button" (click)="add(name.value, 12)" >add</button>
+</div>
+<ul>
+  <li *ngFor="let e of employees$ | async">
+    <span>{{ e.name }} </span>
+    <button type="button" (click)="remove(e.name)">x</button>
+  </li>
+</ul>

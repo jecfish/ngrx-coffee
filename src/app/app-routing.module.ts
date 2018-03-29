@@ -19,6 +19,10 @@ const routes: Routes = [
   {
     path: 'remix',
     loadChildren: './modules/remix/remix.module#RemixModule'
+  },
+  {
+    path: 'baristas',
+    loadChildren: './modules/barista/barista.module#BaristaModule'
   }
 ];
 
