@@ -45,8 +45,10 @@ export class CustomizePageComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$)
       ).subscribe(x => {
         this.coffee = x.template ? { ...x.template } : { ...this.defaultCoffee };
-        this.coffee.recipe = [...this.coffee.recipe, ...this.defaultCoffee.recipe
-          .filter(w => !this.coffee.recipe.map(r => r.name).includes(w.name))];
+        this.coffee.recipe = [
+          ...this.coffee.recipe.map(ing => ({ ...ing })),
+          ...this.defaultCoffee.recipe
+            .filter(w => !this.coffee.recipe.map(r => r.name).includes(w.name))];
         this.coffee.name = 'Special Cafe ' + x.runningNo.toString().padStart(2, '0');
         this.coffee.price = 20;
       });

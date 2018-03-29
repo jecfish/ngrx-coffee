@@ -3,8 +3,8 @@
 }
 
 .cup-body {
-  width: 140px;
-  height: 140px;
+  width: 200px;
+  height: 180px;
   border: 6px solid black;
   display: flex;
   flex-direction: column-reverse;
