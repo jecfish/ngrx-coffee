@@ -1,5 +1,5 @@
 import { employeeAdapter } from './barista.init';
-import { createSelector, createFeatureSelector } from '@ngrx/store';
+import { createSelector, createFeatureSelector, MemoizedSelector } from '@ngrx/store';
 import { BaristaState, Barista } from './barista.interfaces';
 
 const {
@@ -10,7 +10,7 @@ const {
     selectTotal
 } = employeeAdapter.getSelectors();
 
-export const selectBaristaState = createFeatureSelector<BaristaState>('barista');
-export const selectEmployeeEnt = createSelector(selectBaristaState as any, (x: Barista) => x.employeesEnt);
+export const selectBaristaState = createFeatureSelector<Barista>('barista');
+export const selectEmployeeEnt = createSelector(selectBaristaState, (x: Barista) => x.employeesEnt);
 export const selectAllEmployees = createSelector(selectEmployeeEnt, selectAll);
 export const selectAllEmployeesTotal = createSelector(selectEmployeeEnt, selectTotal);
