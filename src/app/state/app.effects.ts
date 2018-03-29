@@ -5,10 +5,9 @@ import { Store, Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
-
 import { CoffeeService } from '../services/coffee.service';
 import * as i from './app.interfaces';
-import * as a from './app.actions';
+import { AppAction, GetCoffeeListSuccess, GetCoffeeListFailed } from './app.actions';
 
 @Injectable()
 export class AppEffects {
@@ -19,12 +18,13 @@ export class AppEffects {
             switchMap(() => {
                 return this.coffeeSvc.getAll()
                     .pipe(
-                        map(x => ({ type: 'GET_COFFEE_LIST_SUCCESS', payload: x })),
-                        catchError(() => of({ type: 'GET_COFFEE_LIST_FAILED' }))
+                        map(x => new GetCoffeeListSuccess(x)),
+                        catchError(() => of(new GetCoffeeListFailed()))
                     );
             })
         );
-    constructor(private actions$: Actions<a.AppAction>,
+
+    constructor(private actions$: Actions<AppAction>,
         private coffeeSvc: CoffeeService,
         private _store: Store<i.AppState>) { }
 }

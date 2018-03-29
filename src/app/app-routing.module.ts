@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ListPageComponent, Cart2PageComponent, CustomizePageComponent } from './containers';
+import { ListPageComponent, CartPageComponent } from './containers';
 
 const routes: Routes = [
   {
@@ -14,11 +14,15 @@ const routes: Routes = [
   },
   {
     path: 'cart',
-    component: Cart2PageComponent
+    component: CartPageComponent
   },
   {
     path: 'remix',
-    component: CustomizePageComponent
+    loadChildren: './modules/remix/remix.module#RemixModule'
+  },
+  {
+    path: 'baristas',
+    loadChildren: './modules/barista/barista.module#BaristaModule'
   }
 ];
 

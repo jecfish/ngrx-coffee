@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { combineLatest } from 'rxjs/observable/combineLatest';
 import * as i from '../../state/app.interfaces';
+import { EmptyCart } from '../../state/app.actions';
 
 @Component({
   selector: 'app-pay',
@@ -27,7 +28,7 @@ export class PayComponent implements OnInit {
 
   pay() {
     alert('Yay, order placed. Start a new order!');
-    this.store.dispatch({ type: 'EMPTY_CART' });
+    this.store.dispatch(new EmptyCart());
     this.router.navigateByUrl('/menu');
   }
 

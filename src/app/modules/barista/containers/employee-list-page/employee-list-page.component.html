@@ -1,0 +1,19 @@
+<h1>{{ total$ | async }} baristas on shift</h1>
+<!-- <div class="flex-center">
+  <button type="button" (click)="reset()">reset</button>
+</div> -->
+<div class="flex-center">
+  <form>
+    <input type="text" name="name" ngModel #name="ngModel" placeholder="name">
+    <input type="number" name="age" ngModel #age="ngModel" [style.width.px]="60" placeholder="age">
+    <button type="submit" (click)="add(name.value, age.value)">add</button>
+  </form>
+</div>
+<div class="flex-center">
+  <ul>
+    <li *ngFor="let e of employees$ | async">
+      <span>{{ e.name | titlecase }}<span class="smaller">, age {{ e.age }}</span></span>
+      <button type="button" class="delete" (click)="remove(e.name)">x</button>
+    </li>
+  </ul>
+</div>

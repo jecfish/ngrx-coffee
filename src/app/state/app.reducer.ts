@@ -1,8 +1,8 @@
 import * as i from './app.interfaces';
-import * as a from './app.actions';
+import { AppAction } from './app.actions';
 import { appInitialState } from './app.init';
 
-export function appReducer(state: i.App, action: a.AppAction): i.App {
+export function appReducer(state: i.App, action: AppAction): i.App {
     switch (action.type) {
         case 'GET_COFFEE_LIST_SUCCESS': {
             const current = {
@@ -50,7 +50,7 @@ export function appReducer(state: i.App, action: a.AppAction): i.App {
             const current = {
                 cart: [
                     ...state.cart.filter(x => x.name !== action.payload),
-                    { name: item.name, quantity: item.quantity - 1 }
+                    ...(item.quantity - 1 <= 0 ? [] : [{ name: item.name, quantity: item.quantity - 1 }])
                 ]
             };
 
@@ -70,15 +70,6 @@ export function appReducer(state: i.App, action: a.AppAction): i.App {
         case 'ADD_TO_COFFEE_LIST': {
             const current = {
                 coffeeList: [...state.coffeeList, ...action.payload]
-            };
-
-            return { ...state, ...current };
-        }
-
-        case 'NEXT_RUNNING_NO': {
-
-            const current = {
-                runningNo: state.runningNo + 1
             };
 
             return { ...state, ...current };
