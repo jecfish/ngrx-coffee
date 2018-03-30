@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import * as i from '../../+state/remix.interfaces';
+import * as ia from '../../../../state/app.interfaces';
 import { Store } from '@ngrx/store';
 import { take, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs/Subject';
@@ -25,7 +26,7 @@ export class CustomizePageComponent implements OnInit, OnDestroy {
     'water'
   ];
 
-  coffee;
+  coffee: ia.Coffee;
 
   constructor(private route: ActivatedRoute, private router: Router, private store: Store<i.RemixState>) { }
 
