@@ -18,14 +18,13 @@ export class CartPageComponent implements OnInit {
       // list of cart coffee object
       select(x => x.app.cart.map(item => {
         // get coffee object by name
-        const { name, price, recipe } = x.app.coffeeList.find(c => c.name === item.name);
+        const { price, ...props } = x.app.coffeeList.find(c => c.name === item.name);
 
         return {
-          name,
           quantity: item.quantity,
           unitPrice: price,
           price: item.quantity * price, // sum quantity
-          recipe
+          ...props,
         };
       })),
       // sort by name
