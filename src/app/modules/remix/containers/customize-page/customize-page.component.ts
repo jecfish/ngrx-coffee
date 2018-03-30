@@ -17,26 +17,21 @@ export class CustomizePageComponent implements OnInit, OnDestroy {
   destroy$ = new Subject();
 
   ingredients = [
-    'espresso',
     'chocolate syrup',
-    'steamed milk',
+    'espresso',
     'milk foam',
+    'steamed milk',
     'whipped cream',
     'water'
   ];
 
-  private defaultCoffee = {
-    name: '',
-    price: 0,
-    recipe: this.ingredients.map(x => ({ name: x, quantity: 0 }))
-  };
-
-  coffee = { ...this.defaultCoffee };
+  coffee;
 
   constructor(private route: ActivatedRoute, private router: Router, private store: Store<i.RemixState>) { }
 
   ngOnInit() {
     const { template = '' } = this.route.snapshot.queryParams;
+
     this.store.select(x => ({
       template: x.app.coffeeList.find(c => c.name === template),
       runningNo: x.remix.runningNo
@@ -44,13 +39,20 @@ export class CustomizePageComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.destroy$)
       ).subscribe(x => {
-        this.coffee = x.template ? { ...x.template } : { ...this.defaultCoffee };
-        this.coffee.recipe = [
-          ...this.coffee.recipe.map(ing => ({ ...ing })),
-          ...this.defaultCoffee.recipe
-            .filter(w => !this.coffee.recipe.map(r => r.name).includes(w.name))];
-        this.coffee.name = 'Special Cafe ' + x.runningNo.toString().padStart(2, '0');
-        this.coffee.price = 20;
+        // get template recipe if any
+        const templateRecipe = x.template ? x.template.recipe : [];
+
+        // merge template recipe with default recipe
+        const recipe = this.ingredients.map(ing => {
+          const item = templateRecipe.find(r => r.name === ing) || { name: ing, quantity: 0 };
+          return { ...item };
+        });
+
+        this.coffee = {
+          name: 'Special Cafe ' + x.runningNo.toString().padStart(2, '0'),
+          price: 20,
+          recipe
+        };
       });
   }
 
