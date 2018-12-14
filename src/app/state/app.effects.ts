@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Effect, Actions } from '@ngrx/effects';
+import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Store, Action } from '@ngrx/store';
 
 import { Observable, of } from 'rxjs';
@@ -12,8 +12,8 @@ import { AppAction, GetCoffeeListSuccess, GetCoffeeListFailed } from './app.acti
 export class AppEffects {
     @Effect()
     getCoffeeListStart$: Observable<Action> = this.actions$
-        .ofType('GET_COFFEE_LIST')
         .pipe(
+            ofType('GET_COFFEE_LIST'),
             switchMap(() => {
                 return this.coffeeSvc.getAll()
                     .pipe(
