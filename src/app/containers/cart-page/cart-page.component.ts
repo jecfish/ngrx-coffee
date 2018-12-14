@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import * as i from '../../state/app.interfaces';
 import { map } from 'rxjs/operators';
-import { combineLatest } from 'rxjs/observable/combineLatest';
 import { AddToCart, RemoveOneCartItem, RemoveCartItem } from '../../state/app.actions';
 
 @Component({
