@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import * as i from '../../state/app.interfaces';
 import { environment } from '../../../environments/environment';
 
@@ -10,7 +10,11 @@ import { environment } from '../../../environments/environment';
 })
 export class HeaderComponent implements OnInit {
 
-  cartCount$ = this.store.select(x => x.app.cart.map(item => item.quantity).reduce((acc, curr) => acc + curr, 0));
+  cartCount$ = this.store.pipe(
+    select(x => x.app.cart
+      .map(item => item.quantity)
+      .reduce((acc, curr) => acc + curr, 0))
+  );
   isFeatureRemixOn = environment.features.remix;
   isFeatureBaristaOn = environment.features.barista;
 

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as i from '../../+state/barista.interfaces';
 import { Store, select } from '@ngrx/store';
 import { take, map } from 'rxjs/operators';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { AddToCoffeeList, AddToCart } from '../../../../state/app.actions';
 import { LoadEmployees, DeleteEmployee, AddEmployees, AddEmployee } from '../../+state/barista.actions';
 import { selectAllEmployees, selectAllEmployeesTotal } from '../../+state/barista.selectors';

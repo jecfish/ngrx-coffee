@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as i from '../../state/app.interfaces';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
@@ -17,14 +17,17 @@ import { GetCoffeeList, AddToCart } from '../../state/app.actions';
 export class ListPageComponent implements OnInit {
 
   // .filter(c => !c.name.startsWith('Special'))
-  list$ = this.store.select(x => x.app.coffeeList);
+  list$ = this.store.pipe(
+    select(x => x.app.coffeeList)
+  );
   isFeatureRemixOn = environment.features.remix;
 
   constructor(private router: Router, private store: Store<i.AppState>) { }
 
   ngOnInit() {
-    this.store.select(x => !!x.app.coffeeList.length)
+    this.store
       .pipe(
+        select(x => !!x.app.coffeeList.length),
         take(1)
       )
       .subscribe(x => {

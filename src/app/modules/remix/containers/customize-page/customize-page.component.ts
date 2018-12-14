@@ -3,9 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import * as i from '../../+state/remix.interfaces';
 import * as ia from '../../../../state/app.interfaces';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { take, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 import { NextRunningNo } from '../../+state/remix.actions';
 import { AddToCoffeeList, AddToCart } from '../../../../state/app.actions';
 
@@ -33,11 +33,12 @@ export class CustomizePageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const { template = '' } = this.route.snapshot.queryParams;
 
-    this.store.select(x => ({
-      template: x.app.coffeeList.find(c => c.name === template),
-      runningNo: x.remix.runningNo
-    }))
+    this.store
       .pipe(
+        select(x => ({
+          template: x.app.coffeeList.find(c => c.name === template),
+          runningNo: x.remix.runningNo
+        })),
         takeUntil(this.destroy$)
       ).subscribe(x => {
         // get template recipe if any

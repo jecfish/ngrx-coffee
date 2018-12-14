@@ -3,10 +3,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { StoreModule } from '@ngrx/store';
 
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import { _throw } from 'rxjs/observable/throw';
-// import 'rxjs/add/observable/throw';
+import { Observable, of, throwError } from 'rxjs';
 import { hot, cold } from 'jasmine-marbles';
 
 import { CoffeeService } from '../services/coffee.service';
@@ -66,7 +63,7 @@ describe('My Effects', () => {
             const completion = new AppActions.GetCoffeeListFailed();
 
             // or import throw, use Observable.throw('err')
-            spyOn(service, 'getAll').and.returnValue(_throw('err'));
+            spyOn(service, 'getAll').and.returnValue(throwError('err'));
 
             // Refer to 'Writing Marble Tests' for details on '--a-' syntax
             actions = hot('--a-', { a: action });

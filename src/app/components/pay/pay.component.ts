@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { combineLatest } from 'rxjs/observable/combineLatest';
+import { combineLatest } from 'rxjs';
 import * as i from '../../state/app.interfaces';
 import { EmptyCart } from '../../state/app.actions';
 
@@ -13,8 +13,8 @@ import { EmptyCart } from '../../state/app.actions';
 })
 export class PayComponent implements OnInit {
 
-  private coffeeList$ = this.store.select(x => x.app.coffeeList);
-  private cart$ = this.store.select(x => x.app.cart);
+  private coffeeList$ = this.store.pipe(select(x => x.app.coffeeList));
+  private cart$ = this.store.pipe(select(x => x.app.cart));
 
   total$ = combineLatest(this.coffeeList$, this.cart$).pipe(
     map(([list, cart]) => cart.map(c => list.find(x => x.name === c.name).price * c.quantity)),
