@@ -14,7 +14,7 @@ const CONTAINERS = [CustomizePageComponent];
   imports: [
     CommonModule,
     SharedModule,
-    StoreModule.forFeature('remix', remixReducer, { initialState: remixInitialState }),
+    StoreModule.forFeature('remix', remixReducer),
     RemixRoutingModule
   ],
   declarations: [

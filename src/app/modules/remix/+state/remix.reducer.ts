@@ -16,7 +16,7 @@ export function remixReducer(state: i.Remix, action: RemixAction): i.Remix {
         /* default state */
 
         default: {
-            return state;
+            return state || remixInitialState;
         }
     }
 }
