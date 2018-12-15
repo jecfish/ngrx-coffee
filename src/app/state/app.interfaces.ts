@@ -1,11 +1,11 @@
-export interface App {
-    // define state here
-    coffeeList: Coffee[];
-    cart: { name: string; quantity: number }[];
+export interface AppState {
+    readonly app: App; // module
 }
 
-export interface AppState {
-    readonly app: App;
+export interface App {
+    // define "tables" here
+    coffeeList: Coffee[];
+    cart: { name: string; quantity: number }[];
 }
 
 export interface Coffee {
