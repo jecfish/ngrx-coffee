@@ -15,7 +15,7 @@ const CONTAINERS = [EmployeeListPageComponent];
   imports: [
     CommonModule,
     FormsModule,
-    StoreModule.forFeature('barista', baristaReducer, { initialState: baristaInitialState }),
+    StoreModule.forFeature('barista', baristaReducer),
     BaristaRoutingModule
   ],
   declarations: [

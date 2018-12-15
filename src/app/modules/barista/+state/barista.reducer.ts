@@ -34,7 +34,7 @@ export function baristaReducer(state: i.Barista, action: BaristaAction): i.Baris
         }
 
         default: {
-            return state;
+            return state || baristaInitialState;
         }
     }
 }
