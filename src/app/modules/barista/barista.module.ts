@@ -7,7 +7,6 @@ import { BaristaRoutingModule } from './barista-routing.module';
 import { EmployeeListPageComponent } from './containers';
 
 import { baristaReducer } from './+state/barista.reducer';
-import { baristaInitialState } from './+state/barista.init';
 
 const CONTAINERS = [EmployeeListPageComponent];
 

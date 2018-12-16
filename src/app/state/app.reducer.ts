@@ -78,7 +78,7 @@ export function appReducer(state: i.App, action: AppAction): i.App {
         /* default state */
 
         default: {
-            return state;
+            return state || appInitialState;
         }
     }
 }

@@ -6,7 +6,6 @@ import { CustomizePageComponent } from './containers';
 import { SharedModule } from '../shared';
 import { StoreModule } from '@ngrx/store';
 import { remixReducer } from './+state/remix.reducer';
-import { remixInitialState } from './+state/remix.init';
 
 const CONTAINERS = [CustomizePageComponent];
 
